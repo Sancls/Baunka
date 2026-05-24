@@ -34,6 +34,26 @@ def add_book(books):
     books.append({"author": author, "title": title, "rating": rating, "date": date})
     save_books(books)
     print("Книга успешно добавлена!")
+
+
+def delete_book(books):
+    if not books:
+        print("Удалять нечего.")
+        return
+    print("\n--- Удаление книги ---")
+    for idx, b in enumerate(books, 1):
+        print(f"{idx}. {b['author']} - «{b['title']}»")
+
+    try:
+        num = int(input("Введите номер книги для удаления: ")) - 1
+        if 0 <= num < len(books):
+            removed = books.pop(num)
+            save_books(books)
+            print(f"Книга «{removed['title']}» удалена.")
+        else:
+            print("Неверный номер.")
+    except ValueError:
+        print("Введите число.")
 def main():
     books = load_books()
     while True:
