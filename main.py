@@ -34,6 +34,31 @@ def add_book(books):
     books.append({"author": author, "title": title, "rating": rating, "date": date})
     save_books(books)
     print("Книга успешно добавлена!")
+def show_all_books(books):
+    if not books:
+        print("Трекер пуст.")
+        return
+    print("\n--- Список книг ---")
+    for idx, b in enumerate(books, 1):
+        print(f"{idx}. {b['author']} - «{b['title']}» ({b['rating']}/5)")
+
+def show_average_rating(books):
+    if not books:
+        print("Нет книг.")
+        return
+    avg = sum(b["rating"] for b in books) / len(books)
+    print(f"\nСредняя оценка: {avg:.2f}")
+
+def show_author_stats(books):
+    if not books:
+        print("Нет данных.")
+        return
+    stats = {}
+    for b in books:
+        stats[b["author"]] = stats.get(b["author"], 0) + 1
+    print("\n--- Статистика по авторам ---")
+    for author, count in stats.items():
+        print(f"{author}: {count} кн.")
 def main():
     books = load_books()
     while True:
