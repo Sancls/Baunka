@@ -36,7 +36,7 @@ def add_book(books):
     print("Книга успешно добавлена!")
 def show_all_books(books):
     if not books:
-        print("Трекер пуст.")
+        print("Книг еще нет.")
         return
     print("\n--- Список книг ---")
     for idx, b in enumerate(books, 1):
@@ -44,7 +44,7 @@ def show_all_books(books):
 
 def show_average_rating(books):
     if not books:
-        print("Нет книг.")
+        print("Книг еще нет.")
         return
     avg = sum(b["rating"] for b in books) / len(books)
     print(f"\nСредняя оценка: {avg:.2f}")
@@ -58,7 +58,7 @@ def show_author_stats(books):
         stats[b["author"]] = stats.get(b["author"], 0) + 1
     print("\n--- Статистика по авторам ---")
     for author, count in stats.items():
-        print(f"{author}: {count} кн.")
+        print(f"{author}: {count} среднее.")
 def delete_book(books):
     if not books:
         print("Удалять нечего.")
